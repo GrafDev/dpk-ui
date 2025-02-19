@@ -6,56 +6,187 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface ModalWon {
         /**
-          * The first name
+          * Время анимации в миллисекундах
+          * @default 300
          */
-        "first": string;
+        "animationDuration": number;
         /**
-          * The last name
+          * Соотношение сторон
          */
-        "last": string;
+        "aspectRatio"?: string;
         /**
-          * The middle name
+          * Путь к фоновому изображению модального окна (опционально)
          */
-        "middle": string;
+        "backgroundImage"?: string;
+        /**
+          * Путь к изображению кнопки (опционально)
+         */
+        "buttonImage"?: string;
+        /**
+          * Текст кнопки
+          * @default 'CLAIM BONUS'
+         */
+        "buttonText": string;
+        /**
+          * Включить/выключить возможность закрытия по клику на оверлей
+          * @default true
+         */
+        "closeOnOverlayClick": boolean;
+        /**
+          * CSS переменные для стилизации
+         */
+        "cssVariables"?: {
+    modalContentBg?: string;
+    modalContentRadius?: string;
+    modalButtonBg?: string;
+    modalButtonRadius?: string;
+  };
+        /**
+          * CSS класс для дополнительной стилизации модального окна
+          * @default ''
+         */
+        "customClass": string;
+        /**
+          * Определяет, открыто ли модальное окно
+         */
+        "isOpen": boolean;
+        /**
+          * Высота модального окна
+         */
+        "modalHeight"?: string;
+        /**
+          * Ширина модального окна
+         */
+        "modalWidth"?: string;
+        /**
+          * Ссылка для кнопки действия
+          * @default '#'
+         */
+        "offerLink": string;
+        /**
+          * Заголовок модального окна
+          * @default 'YOU WON'
+         */
+        "titleText": string;
+        /**
+          * Сумма выигрыша для отображения
+          * @default '0'
+         */
+        "winAmount": string;
     }
 }
+export interface ModalWonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLModalWonElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLModalWonElementEventMap {
+        "close": any;
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    interface HTMLModalWonElement extends Components.ModalWon, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLModalWonElementEventMap>(type: K, listener: (this: HTMLModalWonElement, ev: ModalWonCustomEvent<HTMLModalWonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLModalWonElementEventMap>(type: K, listener: (this: HTMLModalWonElement, ev: ModalWonCustomEvent<HTMLModalWonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLModalWonElement: {
+        prototype: HTMLModalWonElement;
+        new (): HTMLModalWonElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "modal-won": HTMLModalWonElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface ModalWon {
         /**
-          * The first name
+          * Время анимации в миллисекундах
+          * @default 300
          */
-        "first"?: string;
+        "animationDuration"?: number;
         /**
-          * The last name
+          * Соотношение сторон
          */
-        "last"?: string;
+        "aspectRatio"?: string;
         /**
-          * The middle name
+          * Путь к фоновому изображению модального окна (опционально)
          */
-        "middle"?: string;
+        "backgroundImage"?: string;
+        /**
+          * Путь к изображению кнопки (опционально)
+         */
+        "buttonImage"?: string;
+        /**
+          * Текст кнопки
+          * @default 'CLAIM BONUS'
+         */
+        "buttonText"?: string;
+        /**
+          * Включить/выключить возможность закрытия по клику на оверлей
+          * @default true
+         */
+        "closeOnOverlayClick"?: boolean;
+        /**
+          * CSS переменные для стилизации
+         */
+        "cssVariables"?: {
+    modalContentBg?: string;
+    modalContentRadius?: string;
+    modalButtonBg?: string;
+    modalButtonRadius?: string;
+  };
+        /**
+          * CSS класс для дополнительной стилизации модального окна
+          * @default ''
+         */
+        "customClass"?: string;
+        /**
+          * Определяет, открыто ли модальное окно
+         */
+        "isOpen"?: boolean;
+        /**
+          * Высота модального окна
+         */
+        "modalHeight"?: string;
+        /**
+          * Ширина модального окна
+         */
+        "modalWidth"?: string;
+        /**
+          * Ссылка для кнопки действия
+          * @default '#'
+         */
+        "offerLink"?: string;
+        /**
+          * Событие закрытия модального окна
+         */
+        "onClose"?: (event: ModalWonCustomEvent<any>) => void;
+        /**
+          * Заголовок модального окна
+          * @default 'YOU WON'
+         */
+        "titleText"?: string;
+        /**
+          * Сумма выигрыша для отображения
+          * @default '0'
+         */
+        "winAmount"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "modal-won": ModalWon;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "modal-won": LocalJSX.ModalWon & JSXBase.HTMLAttributes<HTMLModalWonElement>;
         }
     }
 }

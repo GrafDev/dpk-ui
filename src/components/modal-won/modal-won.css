@@ -1,0 +1,208 @@
+:host {
+  display: block;
+  --modal-content-bg: linear-gradient(to bottom, #4a1a09 0%, #2b0e04 100%);
+  --modal-content-radius: 15px;
+  --modal-text-color: #ffffff;
+  --modal-title-size: clamp(2rem, 3vw, 2rem);
+  --modal-amount-size: clamp(2rem, 5vw, 3rem);
+  --modal-button-font-size: clamp(1.5rem, 4vw, 2.5rem);
+  --modal-button-padding-x: 0.8em;
+  --modal-button-padding-y: 0.2em;
+  --modal-content-padding-top: 20%;
+  --modal-content-gap: clamp(0.8rem, 2vh, 1.5rem);
+  --modal-button-bg: linear-gradient(180deg, #26b33c 0%, #1a7928 100%);
+  --modal-button-radius: 8px;
+  --modal-width: min(400px, 90%);
+  --modal-height: auto;
+  --modal-aspect-ratio: 4/3;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--modal-content-bg);
+  border-radius: var(--modal-content-radius);
+  padding: 2rem;
+  text-align: center;
+  color: var(--modal-text-color);
+  width: var(--modal-width);
+  height: var(--modal-height);
+  aspect-ratio: var(--modal-aspect-ratio);
+  position: relative;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-content.has-background {
+  padding: 0;
+  width: var(--modal-width);
+  height: var(--modal-height);
+  max-width: 90vw;
+  max-height: 90vh;
+  aspect-ratio: var(--modal-aspect-ratio);
+  background: none;
+  border-radius: 0;
+}
+
+/* Если задан кастомный размер, отменяем стандартные ограничения */
+.modal-content.custom-size {
+  width: var(--modal-width);
+  height: var(--modal-height);
+  max-width: none;
+  max-height: none;
+}
+
+.modal-content.custom-size.has-background {
+  width: var(--modal-width);
+  height: var(--modal-height);
+}
+
+.modal-content.has-background img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-content-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--modal-content-padding-top);
+  gap: var(--modal-content-gap);
+  z-index: 1;
+}
+
+.modal-title {
+  font-size: var(--modal-title-size);
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: fadeInDown 0.5s ease-out;
+  text-align: center;
+  width: 100%;
+}
+
+.modal-win-amount {
+  font-size: var(--modal-amount-size);
+  font-weight: bold;
+  color: #ff3a3a;
+  animation: scaleIn 0.6s ease-out;
+  text-align: center;
+  width: 100%;
+}
+
+.modal-button {
+  background: var(--modal-button-bg);
+  border-radius: var(--modal-button-radius);
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: var(--modal-button-font-size);
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  padding: var(--modal-button-padding-y) var(--modal-button-padding-x);
+  min-width: min-content;
+  width: auto;
+  height: auto;
+  white-space: nowrap;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.modal-button:hover {
+  filter: brightness(1.2);
+  transform: scale(1.02);
+}
+
+.modal-button:active {
+  transform: scale(0.98);
+  filter: brightness(0.95);
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) {
+  :host {
+    --modal-content-padding-top: 10%;
+    --modal-content-gap: clamp(0.5rem, 1.5vh, 1rem);
+  }
+
+  .modal-content.has-background {
+    max-height: 85vh;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  :host {
+    --modal-content-padding-top: 15%;
+  }
+
+  .modal-content.has-background {
+    max-width: 95vw;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+  :host {
+    --modal-content-padding-top: 10%;
+    --modal-content-gap: 0.5rem;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
