@@ -40,6 +40,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs.js"
     },
+    "./modal-won": {
+      "types": "./dist/components/modal-won.d.ts",
+      "import": "./dist/components/modal-won.js"
+    },
     "./loader": {
       "types": "./loader/index.d.ts",
       "import": "./loader/index.mjs",
