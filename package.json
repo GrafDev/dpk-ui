@@ -1,6 +1,6 @@
 {
   "name": "dpk-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Web Components UI Library built with Stencil.js",
   "keywords": [
     "web-components",
