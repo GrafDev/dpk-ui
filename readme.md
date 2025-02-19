@@ -5,7 +5,7 @@
 ## Установка
 
 ```bash
-npm install dpk-ui@0.0.2
+npm install dpk-ui
 ```
 
 ## Использование
