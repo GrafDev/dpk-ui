@@ -74,7 +74,10 @@ defineCustomElements();
 
 ### Компоненты
 
-- [Modal Won](./src/components/modal-won/readme.md) - Модальное окно для отображения выигрыша
+Документация компонентов:
+- Modal Won - Модальное окно для отображения выигрыша
+  - [GitHub документация](./src/components/modal-won/readme.md)
+  - [NPM документация](./dist/components/modal-won/readme.md)
 
 Полную документацию можно найти в [директории docs](./docs/).
 
