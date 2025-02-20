@@ -114,7 +114,7 @@ modal-won {
 }
 ```
 
-Подробная документация доступна в [GitHub репозитории](https://github.com/dpk-developer/dpk-ui)
+Подробная документация доступна в [GitHub репозитории](https://github.com/GrafDev/dpk-ui/blob/master/src/components/modal-won/readme.md)
 
 ## 👨‍💻 Разработка
 
